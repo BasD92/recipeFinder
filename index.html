@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe finder</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<h1>Recipe finder</h1>
+
+<h2>Combine your favourite food ingredients and find recipes!</h2>
+
+<form id="searchForm" action="" method="post">
+    <input type="text" placeholder="Cook for yourself? Your name:" id="name1" />
+    <input type="text" placeholder="Another one cooks for you? His/her name:" id="name2"/>
+    <input type="text" placeholder="Your first ingredient:" id="ingredient1"/>
+    <input type="text" placeholder="Your second ingredient:" id="ingredient2" />
+    <input type="text" placeholder="Your third ingredient" id="ingredient3"/>
+    <input type="text" placeholder="Your fourth ingredient" id="ingredient4"/>
+    <input type="submit" id="button" value="Find recipes"/>
+</form>
+
+<div id="cookName"></div>
+
+<h2>Recipes results</h2>
+<div id="recipes"></div>
+
+<h2>Video results</h2>
+<div id="videos"></div>
+
+<script src="node_modules/babel-polyfill/dist/polyfill.js"></script>
+<script src="jquery/jquery-1.11.0.js"></script>
+<script src="backbone/underscore.js"></script>
+<script src="backbone/backbone.js"></script>
+<script src="dist/bundle.js"></script>
+</body>
+</html>
