@@ -1,4 +1,4 @@
-(function () {
+(function () { 
 
     let userModel = Backbone.Model.extend(
         /** @lends userModel.prototype */
