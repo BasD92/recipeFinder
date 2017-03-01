@@ -1,4 +1,4 @@
-input { 
+input {
     display: block;
     margin-top: 5px;
 }
@@ -14,7 +14,7 @@ input {
 .video {
     width: 350px;
     height: 350px;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 
 li {
@@ -22,8 +22,8 @@ li {
 }
 
 .recipe {
+    display: inline-block;
     width: 250px;
-    margin-left: 10px;
 }
 
 .bold {

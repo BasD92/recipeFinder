@@ -1324,7 +1324,7 @@
 
     // Clears all callbacks previously bound to the view by `delegateEvents`.
     // You usually don't need to use this, but may wish to if you have multiple
-    // Backbone views attached to the same DOM element.
+    // Backbone models attached to the same DOM element.
     undelegateEvents: function() {
       if (this.$el) this.$el.off('.delegateEvents' + this.cid);
       return this;

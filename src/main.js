@@ -1,4 +1,4 @@
-(function () { 
+(function () {
 
     let userModel = Backbone.Model.extend(
         /** @lends userModel.prototype */
@@ -36,7 +36,10 @@
             }
         });
 
-    let VideoCollection = Backbone.Collection.extend(
+    /**
+     *  Create collection model to receive all videos
+     */
+    let videoCollection = Backbone.Collection.extend(
         /** @lends VideoCollection.prototype */
         {
             /**
@@ -53,7 +56,7 @@
     /**
      *  Create collection model to receive all recipes
      */
-    let RecipeCollection = Backbone.Collection.extend(
+    let recipeCollection = Backbone.Collection.extend(
         /** @lends RecipeCollection.prototype */
         {
             /**
@@ -70,7 +73,7 @@
     /**
      *  Create view class
      */
-    let UserView = Backbone.View.extend(
+    let userView = Backbone.View.extend(
         /** @lends UserView.prototype */
         {
             el: $('#searchForm'),
@@ -102,7 +105,7 @@
     /**
      *  Inheritance of Userview
      */
-    let otherView = UserView.extend(
+    let otherView = userView.extend(
         /** @lends otherView.prototype */
         {
             /**
@@ -123,7 +126,7 @@
     /**
      *  Create videosView
      */
-    let VideosView = Backbone.View.extend(
+    let videosView = Backbone.View.extend(
         /** @lends VideosView.prototype */
         {
             el: $('#searchForm'),
@@ -143,7 +146,7 @@
                 /**
                  *  Instance of collection model videoCollection
                  */
-                let videos = new VideoCollection();
+                let videos = new videoCollection();
 
                 // Store ingredients in variable
                 let ingredient1 = $('#ingredient1').val();
@@ -160,10 +163,11 @@
                     data: { part: 'snippet', q: allIngredients+recipe, maxResults: 4,
                         key: 'AIzaSyDns6HiujbQbbeQscYNMPaoie95yO6oMqQ'},
                     success: function (videos) {
+                        $('#videos').empty();
                         videos.each(function(x) {
                             let items = x.get('items');
                             for(let values of items) {
-                                $('#videos').html('<iframe src=' + 'http://www.youtube.com/embed/' + values.id['videoId'] + ' + class="video"></iframe>');
+                                $('#videos').append('<iframe src=' + 'http://www.youtube.com/embed/' + values.id['videoId'] + ' + class="video"></iframe>');
                             }
                         })
                     },
@@ -180,7 +184,7 @@
     /**
      *  Create recipesView
      */
-    let RecipesView = Backbone.View.extend(
+    let recipesView = Backbone.View.extend(
         /** @lends RecipesView.prototype */
         {
             el: $('#searchForm'),
@@ -198,7 +202,7 @@
             render: (e) => {
                 e.preventDefault();
                 // Instance of collection model recipeCollection
-                let recipes = new RecipeCollection();
+                let recipes = new recipeCollection();
 
                 /**
                  * Store all ingredient in variable
@@ -217,12 +221,12 @@
                     jsonpCallback: 'jsonpCallback',
                     data: { i: allIngredients, page: 1},
                     success: function (recipes) {
+                        $('#recipes').empty();
                         recipes.each(function(x) {
                             let results = x.get('results')
                             for(let values of results) {
-                                //console.log(values.title);
-                                $('#recipes').html("<div class='recipe'><ul>" +
-                                    "<span class='bold'>Titel</span>" +
+                                $('#recipes').append("<div class='recipe'><ul>" +
+                                    "<span class='bold'>Title</span>" +
                                     "<li>" + values.title + "</li>" +
                                     "<li><a href=" + values.href + ">Link to recipe</a></li>" +
                                     "<span class='bold'>Ingredients</span>" +
@@ -251,7 +255,7 @@
     /**
      *  Instance of Userview
      */
-    new UserView({model: user});
+    new userView({model: user});
 
     /**
      *  Instance of Othermodel
@@ -266,11 +270,11 @@
     /**
      *  Instance of VideosView
      */
-    new VideosView();
+    new videosView();
 
     /**
      *  Instance of RecipesView
      */
-    new RecipesView();
+    new recipesView();
 
 })();
